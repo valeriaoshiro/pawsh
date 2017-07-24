@@ -1,6 +1,6 @@
 <div class="container">
 <h1>Edit <%= @user.name %>'s profile</h1>
-<%= form_for @user do |f| %>
+<%= form_for @user, html: {multipart: true} do |f| %>
     <div class="input-field">
         <%= f.text_field :name %>
         <%= f.label :name, class: "active" %>
@@ -13,7 +13,15 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %>
     </div>
-    
+    <div class="input-field file-field">
+        <div class="btn">
+            <span>Upload picture of your dog</span>
+            <%= f.file_field :image %>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+      </div>
+    </div>
     <%= f.submit "Update profile!", class: "waves-effect waves-teal btn" %>
 <% end %>
 <br>

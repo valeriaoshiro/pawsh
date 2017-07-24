@@ -28,17 +28,27 @@ class LocationsController < ApplicationController
     
     def update
         @location = Location.find(params[:id])
-        if @location.update_attributes(user_params)
-            redirect_to location_path(params[:id])
+        if @location.user.id == session[:user_id]
+            if @location.update_attributes(user_params)
+                redirect_to location_path(params[:id])
+            else
+                render :edit
+            end
         else
-            render :edit
+            # user gets notified it's not allowed
         end
+
+
     end
     
     def destroy
         @location = Location.find(params[:id])
-        @location.destroy
-        redirect_to locations_path
+        if @location.user.id == session[:user_id]
+            @location.destroy
+            redirect_to locations_path
+        else
+
+            end
     end
 
 private

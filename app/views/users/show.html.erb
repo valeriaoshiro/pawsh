@@ -5,4 +5,13 @@ ID: <%= @user.id %>
 <%= link_to "Edit profile", edit_user_path(@user), class: "waves-effect waves-teal btn" %>
 <%= link_to "Back", users_path, class: "waves-effect waves-teal btn" %>
 
+<ul>
+ <% @user.images.each do |img| %>
+<li>
+    <%= image_tag img.image.url(:thumb) %>
+</li>    
+<% end %>
+</ul>
+
+
 </div>

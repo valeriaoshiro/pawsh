@@ -6,7 +6,10 @@
 <%= @location.description %>
 
 <br>
-<%= link_to "Edit location", edit_location_path(@location), class: "waves-effect waves-teal btn" %>
+<% if @location.user.id == session[:user_id] %>
+    <%= link_to "Edit location", edit_location_path(@location), class: "waves-effect waves-teal btn" %>
+<% end %>
+
 <%= link_to "Back", locations_path, class: "waves-effect waves-teal btn" %>
 <br>
 
