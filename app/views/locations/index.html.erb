@@ -1,0 +1,18 @@
+<div class="container">
+<h1>Locations path</h1>
+
+    <%= link_to "Enter new location", new_location_path, class: "waves-effect waves-teal btn" %>
+    <ul>
+        <% @locations.each do |loc|  %>
+            <li>
+                <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %> - 
+                <%= loc.address %> - 
+                <%= loc.phone %> - 
+                <%= loc.description %> - 
+                <%= loc.id %> - 
+                <%= loc.user.name %>
+            </li>
+        <% end %>
+    </ul>
+
+</div>

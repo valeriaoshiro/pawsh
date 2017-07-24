@@ -4,11 +4,44 @@
     <title>Pawsh</title>
     <%= csrf_meta_tags %>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
+          
+    <%= favicon_link_tag "logo.png" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <nav class="white">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo"><%= image_tag "logo.png", size: "55x55", alt: "Pawsh logo" %></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if current_user %>
+            <li><%= link_to "Welcome, #{current_user.name}", user_path(current_user), class: "cyan-text text-darken-2" %></li>
+            <li><%= link_to 'Log Out', session_path('dummy'), method: :delete, class: "cyan-text text-darken-2" %></li>
+          <% else %>
+            <li><%= link_to 'Log In', login_path, class: "cyan-text text-darken-2" %></li>
+            <li><%= link_to 'Sign Up', new_user_path, class: "cyan-text text-darken-2" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+   
+    <main>
     <%= yield %>
+    </main>
+
+    <footer class="page-footer">
+      <div class="footer-copyright white black-text">
+        <div class="container">
+          <a class="black-text" href="#!">About Pawsh</a>
+          &nbsp; | &nbsp;
+          <a class="black-text" href="#!">Contact Us</a>
+          <span class="right">© 2017 Pawsh, All rights reserved.</span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

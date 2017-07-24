@@ -1,0 +1,31 @@
+<div class="container">
+<h1>Edit <%= @location.name %></h1>
+
+<div class="row">
+<%= form_for @location do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    <div>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+    </div>
+    <div>
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+    </div>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+    </div>
+    <%= f.submit "Edit #{@location.name}", class: "waves-effect waves-teal btn" %>
+
+<% end %>
+</div>
+
+<%= link_to "Delete", location_path(@location), method: :delete, data: { confirm: "Are you sure? " }, class: "waves-effect waves-teal btn" %>
+<br>
+<br>
+<%= link_to "Back", location_path(@location), class: "waves-effect waves-teal btn" %>
+</div>

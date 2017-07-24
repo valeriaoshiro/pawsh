@@ -1,0 +1,13 @@
+<div class="container">
+<h1>Edit <%= @user.name %>'s profile</h1>
+<%= form_for @user do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    
+    <%= f.submit "Update profile!" %>
+<% end %>
+
+<%= link_to "Back", user_path(@user) %>
+</div>
