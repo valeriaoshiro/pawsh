@@ -28,6 +28,10 @@ nav {
     box-shadow: none;
 }
 
+nav a:hover {
+    background: white;
+}
+
 .brand-logo {
     margin-left: 10px;
 }

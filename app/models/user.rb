@@ -4,5 +4,13 @@ class User < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true
     validates :name, presence: true
-    validates :password, length: { minimum: 8 }
+    validates :password, length: { minimum: 8 }, if: :password_changed?
+
+private
+
+    def password_changed?
+        self.password && self.changed?
+    end
+    
+
 end
