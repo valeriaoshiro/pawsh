@@ -3,13 +3,13 @@
 
 <div class="row">
     <%= form_for @review do |f| %>
-        <div>
+        <div class="input-field">
+            <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
             <%= f.label :rating %>
-            <%= f.text_field :rating %>
         </div>
-        <div>
+        <div class="input-field">
+            <%= f.text_area :comment, class: "materialize-textarea active" %>
             <%= f.label :comment %>
-            <%= f.text_area :comment %>
         </div>
     
         <%= f.submit "Edit review for #{@review.location.name}", class: "waves-effect waves-teal btn" %>
@@ -22,3 +22,10 @@
     <%= link_to "Back", location_path(@review.location.id), class: "waves-effect waves-teal btn" %>
 </div>
 </div>  
+
+<script>
+ $(document).ready(function() {
+    $('select').material_select();
+    Materialize.updateTextFields();
+  });
+</script>

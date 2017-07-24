@@ -3,30 +3,31 @@
 
 <div class="row">
 <%= form_for @location do |f| %>
-  
-        <div>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-        </div>
-    
-    
-    
-    <div>
-        <%= f.label :address %>
+    <div class="input-field">
+        <%= f.text_field :name %>
+        <%= f.label :name %>
+    </div>
+    <div class="input-field">
         <%= f.text_field :address %>
+        <%= f.label :address %>
     </div>
-    <div>
-        <%= f.label :phone %>
+    <div class="input-field">
         <%= f.text_field :phone %>
+        <%= f.label :phone %>
     </div>
-    <div>
+    <div class="input-field">
+        <%= f.select :description, options_for_select([["Dog Park", "park"], ["Restaurant", "restaurant"], ["Hotel", "hotel"], ["Veterinarian", "vet"], ["Groomer", "groomer"], ["Pet Store", "store"]], params[:description]) %>
         <%= f.label :description %>
-        <%= f.text_field :description %>
     </div>
     <%= f.submit "Create a new location", class: "waves-effect waves-teal btn" %>
-
 <% end %>
 </div>
 
 <%= link_to "Back", locations_path, class: "waves-effect waves-teal btn" %>
 </div>
+
+<script>
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>

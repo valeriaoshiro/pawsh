@@ -12,13 +12,13 @@
 
 <h2>Enter a review</h2>
 <%= form_for [@location, @review] do |f| %>
-    <div>
+    <div class="input-field">
+        <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
         <%= f.label :rating %>
-        <%= f.text_field :rating %>
     </div>
-    <div>
+    <div class="input-field">
+        <%= f.text_area :comment, class: "materialize-textarea" %>
         <%= f.label :comment %>
-        <%= f.text_area :comment %>
     </div>
     <%= f.submit "Enter review", class: "waves-effect waves-teal btn" %>
 <% end %>
@@ -32,3 +32,9 @@
 <% end %>
 </ul>
 </div>
+
+<script>
+ $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
