@@ -10,12 +10,14 @@ class LocationsController < ApplicationController
     
     def new
         @location = Location.new
+        @image = Image.new
     end
 
     def create
         @location = Location.new(user_params)
         @location.user_id = session[:user_id]
         if @location.save
+            @location.images.create(params.require(:location).permit(:image))
             redirect_to locations_path
         else
             render :new
@@ -24,18 +26,18 @@ class LocationsController < ApplicationController
     
     def edit
         @location = Location.find(params[:id])
+        @image = Image.new
     end
     
     def update
         @location = Location.find(params[:id])
+        @location.images.create(params.require(:location).permit(:image))
         if @location.user.id == session[:user_id]
             if @location.update_attributes(user_params)
                 redirect_to location_path(params[:id])
             else
                 render :edit
             end
-        else
-            # user gets notified it's not allowed
         end
 
 
@@ -46,9 +48,7 @@ class LocationsController < ApplicationController
         if @location.user.id == session[:user_id]
             @location.destroy
             redirect_to locations_path
-        else
-
-            end
+        end
     end
 
 private

@@ -19,6 +19,15 @@
         <%= f.select :description, options_for_select([["Dog Park", "park"], ["Restaurant", "restaurant"], ["Hotel", "hotel"], ["Veterinarian", "vet"], ["Groomer", "groomer"], ["Pet Store", "store"]], params[:description]) %>
         <%= f.label :description %>
     </div>
+    <div class="input-field file-field">
+        <div class="btn">
+            <span>Upload a picture</span>
+            <%= f.file_field :image %>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+      </div>
+    </div>
     <%= f.submit "Edit #{@location.name}", class: "waves-effect waves-teal btn" %>
 <% end %>
 </div>

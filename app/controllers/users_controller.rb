@@ -30,13 +30,8 @@ class UsersController < ApplicationController
     end
     
     def update
-        puts "**** Params: " 
-        puts params[:image].inspect
         @user = User.find(params[:id])
         @user.images.create(params.require(:user).permit(:image))
-        # image = Image.new(params[:image])
-        # image.imagetable = current_user
-        # image.save
         if @user.update_attributes(user_params)
             redirect_to user_path(@user)
         else

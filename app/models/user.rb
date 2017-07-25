@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    # after_initialize :set_defaults
+   
 
     has_many :locations, dependent: :destroy
     has_many :images, as: :imagetable
@@ -15,9 +15,7 @@ private
         self.password && self.changed?
     end
     
-    # def set_defaults
-    #     self.images = "DogProfile.png" if self.images.nil?
-    # end
+   
     
 
 end

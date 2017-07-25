@@ -13,6 +13,15 @@
 <%= link_to "Back", locations_path, class: "waves-effect waves-teal btn" %>
 <br>
 
+<ul>
+ <% @location.images.each do |img| %>
+<li>
+    <%= image_tag img.image.url(:thumb) %>
+</li>    
+<% end %>
+</ul>
+
+
 <h2>Enter a review</h2>
 <%= form_for [@location, @review] do |f| %>
     <div class="input-field">
@@ -30,7 +39,9 @@
 <% @location.reviews.each do |review| %>
     <li>
         Rating: <%= review.rating %> - Comment: <%= review.comment %> - <%= review.location_id%>
-        <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
+        <% if review.user_id == session[:user_id] %>
+            <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
+        <% end %>
     </li>
 <% end %>
 </ul>
