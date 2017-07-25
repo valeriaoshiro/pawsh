@@ -1,6 +1,9 @@
 <div class="container">
-<h1>Locations path</h1>
+    <h1>Locations path</h1>
 
+    <div class="map"></div>
+
+    <br>
     <%= link_to "Enter new location", new_location_path, class: "waves-effect waves-teal btn" %>
     <ul>
         <% @locations.each do |loc|  %>
@@ -14,5 +17,58 @@
             </li>
         <% end %>
     </ul>
+    <script>
+        var locations = [
+            <% @locations.each do |loc| %>
+                    {
+                        name: <%= raw loc.name.to_json %>,
+                        address: <%= raw loc.address.to_json %>,
+                        phone: <%= raw loc.phone.to_json %>
+                    },
+            <% end %>
+        ];    
+        var geocoder;
+        var map;
+        function initMap() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(34.0686, -117.9389);
+            var mapOptions = {
+                zoom: 10,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementsByClassName("map")[0], mapOptions);
+            for (var i = 0; i < locations.length; i++){
+                geocoder.geocode({"address": locations[i].address}, function(results, status) {
+                    if (status == "OK") {
+                        marker = new google.maps.Marker({
+                            map: map,
+                            position: results[0].geometry.location,
+                        });
+                        marker.addListener('click', function(){
+                            var infowindow = new google.maps.InfoWindow({
+                                content: ''+
+                                    '<div id="content">' +
+                                        '<div id="siteNotice"></div>'+
+                                        '<h5 id="firstHeading" class="firstHeading">' + locations[i].name + '</h5>'+
+                                        '<div id="bodyContent">'+
+                                            '<div>Address: ' + locations[i].address + '</div>' +
+                                            '<div>Phone: ' + locations[i].phone + '</div>' +
+                                        '</div>' +
+                                    '</div>'
+                            });
+                            infowindow.open(map, marker);
+                        })
+                    } else {
+                        alert("Geocode was not successful for the folloing reason: " + status);
+                    }
+                });
+            }    
+        }
+         
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3kNig-HJCa4zbIaarBJsvoAAN8O1OcWU&callback=initMap"></script>
+
+
+    
 
 </div>

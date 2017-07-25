@@ -89,3 +89,9 @@ textarea.materialize-textarea:focus {
     border-bottom: 1px solid #ff5252 !important;
     box-shadow: 0 1px 0 0 #ff5252 !important;
 }
+
+.map {
+    width: 100%;
+    height: 400px;
+    background-color: grey;
+}
