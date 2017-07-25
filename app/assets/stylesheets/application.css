@@ -34,6 +34,18 @@ nav a:hover {
 
 .brand-logo {
     margin-left: 10px;
+    height: 60px;
+}
+
+nav.nav-center ul {
+    text-align: center;
+}
+nav.nav-center ul li {
+    display: inline;
+    float: none;
+}
+nav.nav-center ul li a {
+    display: inline-block;
 }
 
 .places-description:hover .child {

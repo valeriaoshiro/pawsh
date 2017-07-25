@@ -32,6 +32,15 @@
         <%= f.text_area :comment, class: "materialize-textarea" %>
         <%= f.label :comment %>
     </div>
+    <div class="input-field file-field">
+        <div class="btn">
+            <span>Upload a picture</span>
+            <%= f.file_field :image %>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+      </div>
+    </div>
     <%= f.submit "Enter review", class: "waves-effect waves-teal btn" %>
 <% end %>
 
@@ -39,6 +48,13 @@
 <% @location.reviews.each do |review| %>
     <li>
         Rating: <%= review.rating %> - Comment: <%= review.comment %> - <%= review.location_id%>
+        <ul>
+            <% review.images.each do |img| %>
+            <li>
+                <%= image_tag img.image.url(:thumb) %>
+            </li>    
+            <% end %>
+        </ul>
         <% if review.user_id == session[:user_id] %>
             <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
         <% end %>

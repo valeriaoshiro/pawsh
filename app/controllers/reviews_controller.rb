@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :authorize, except: [:index, :show]
     def index
         @reviews = Review.all
     end
@@ -9,6 +10,7 @@ class ReviewsController < ApplicationController
     
     def new
         @review = Review.new
+        @image = Image.new
     end
     
     def create
@@ -16,6 +18,7 @@ class ReviewsController < ApplicationController
         @review.location_id = params[:location_id]
         @review.user_id = session[:user_id]
         if @review.save
+            @review.images.create(params.require(:review).permit(:image))
             redirect_to location_path(params[:location_id])
         else
             redirect_to locations_path
@@ -24,10 +27,12 @@ class ReviewsController < ApplicationController
     
     def edit
         @review = Review.find(params[:id])
+        @image = Image.new
     end
 
     def update
         @review = Review.find(params[:id])
+        @review.images.create(params.require(:review).permit(:image))
         if @review.user_id == session[:user_id]
             if @review.update_attributes(user_params)
                 redirect_to location_path(@review.location)

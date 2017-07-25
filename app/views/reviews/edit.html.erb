@@ -11,7 +11,15 @@
             <%= f.text_area :comment, class: "materialize-textarea active" %>
             <%= f.label :comment %>
         </div>
-    
+        <div class="input-field file-field">
+        <div class="btn">
+            <span>Upload a picture</span>
+            <%= f.file_field :image %>
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+      </div>
+    </div>
         <%= f.submit "Edit review for #{@review.location.name}", class: "waves-effect waves-teal btn" %>
 
     <% end %>
