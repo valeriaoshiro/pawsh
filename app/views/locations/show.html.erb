@@ -82,29 +82,33 @@
         <% @location.reviews.each do |review| %>
             <div class="divider"></div>
             <br>
-            <li>
-                <% temp_num = 0 %>
-                <% while temp_num < review.rating do %>
-                    <i class="material-icons red-text text-accent-2">star</i>
-                    <% temp_num += 1%>
-                <% end%>
-                <br>
-                <%= review.comment %>
-                <br>
-                <div class="col s1">
-                        <% review.images.each do |img| %>
-                            <% unless img.image_file_name.nil? %>
-                                <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
-                            <% end %>
-                        <% end %>
+            <li class="row">
+                <div class="col s4">
+                    <%= image_tag get_profile_image(User.find(review.user_id)), style: "height: 80px; width: 80px" %>
+                    <%= User.find(review.user_id).name %>
+                    <br>
+                    <% if review.user_id == session[:user_id] %>
+                        <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
+                    <% end %>
                 </div>
-                <br>
-                Submitted by <%= User.find(review.user_id).name %>
-                <br>
-                <% if review.user_id == session[:user_id] %>
-                    <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
-                <% end %>
-                <br>
+                <div class="col s8">
+                    <% temp_num = 0 %>
+                        <% while temp_num < review.rating do %>
+                            <i class="material-icons red-text text-accent-2">star</i>
+                            <% temp_num += 1%>
+                        <% end%>
+                        <br>
+                        <%= review.comment %>
+                        <br>
+                        <div class="col s12">
+                            <% review.images.each do |img| %>
+                                <% unless img.image_file_name.nil? %>
+                                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                </div>
+                
             </li>
         <% end %>
     </ul>

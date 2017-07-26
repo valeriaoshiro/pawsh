@@ -32,10 +32,12 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         @user.images.create(params.require(:user).permit(:image))
-        if @user.update_attributes(user_params)
-            redirect_to user_path(@user)
-        else
-            render :edit
+        if @user.id == session[:user_id]
+            if @user.update_attributes(user_params)
+                redirect_to user_path(@user)
+            else
+                render :edit
+            end
         end
     end
     
