@@ -101,6 +101,7 @@
                         <%= review.comment %>
                         <br>
                         <div class="col s12">
+                            <br>
                             <% review.images.each do |img| %>
                                 <% unless img.image_file_name.nil? %>
                                     <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
