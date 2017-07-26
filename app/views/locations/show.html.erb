@@ -14,11 +14,15 @@
 <br>
 
 <ul>
- <% @location.images.each do |img| %>
-<li>
-    <%= image_tag img.image.url(:thumb) %>
-</li>    
-<% end %>
+    <li>
+        <% unless @location.images[0].image_file_name.nil? %>
+            <% @location.images.each do |img| %>
+                <%= image_tag img.image.url(:thumb) %>
+            <% end %>
+        <% else %>
+            <%= image_tag "default-pic.jpg" %>
+        <% end %>
+    </li>
 </ul>
 
 

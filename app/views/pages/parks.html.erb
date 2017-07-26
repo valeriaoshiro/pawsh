@@ -6,6 +6,7 @@
             <li><a href="/pages/veterinarians">Veterinarians</a></li>
             <li><a href="/pages/groomers">Groomers</a></li>
             <li><a href="/pages/stores">Pet Stores</a></li>
+            <li><a href="/locations">All Locations</a></li>
         </ul>
     </div>
 </nav>
@@ -13,23 +14,35 @@
 <div class="container">
     <h1 class="center">Dog Parks</h1>
     <div class="map"></div>
+    <br>
+    <%= link_to "Add new park", new_location_path, class: "waves-effect waves-teal btn" %>
     <% locations = Location.all %>
     <ul>
         <% locations.each do |loc|  %>
             <% if loc.description == "park" %>
-                <li>
-                    <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %> - 
-                    <%= loc.address %> - 
-                    <%= loc.phone %> - 
-                    <%= loc.description %> - 
-                    <%= loc.id %> - 
-                    <%= loc.user.name %>
+                <div class="divider"></div>
+                <br>
+                <li class="row">
+                    <div class="col s2">
+                        <% unless loc.images[0].image_file_name.nil? %>
+                                <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
+                        <% else %>
+                            <%= image_tag "default-pic.jpg", alt: "Default location picture", style: "height: 80px; width: 80px", class: "center-block" %>
+                        <% end %>
+                    </div>
+                    <div class="col s5">
+                        <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %> 
+                    </div>
+                    <div class="col s5">
+                        <%= loc.address %> 
+                        <br>
+                        <%= loc.phone %>
+                    </div>
                 </li>
             <% end %>    
         <% end %>
     </ul>
-    
-
+    <br>
 
     <script>
         var locations = [

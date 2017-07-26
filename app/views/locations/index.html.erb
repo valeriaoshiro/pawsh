@@ -1,22 +1,48 @@
+<nav class="nav-center teal lighten-2">
+    <div class="nav-wrapper container ">
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+            <li><a href="/pages/parks">Dog Parks</a></li>
+            <li><a href="/pages/restaurants">Restaurants</a></li>
+            <li><a href="/pages/hotels">Hotels</a></li>
+            <li><a href="/pages/veterinarians">Veterinarians</a></li>
+            <li><a href="/pages/groomers">Groomers</a></li>
+            <li><a href="/pages/stores">Pet Stores</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
-    <h1>Locations path</h1>
-
+    <h1>All Locations</h1>
     <div class="map"></div>
-
     <br>
     <%= link_to "Enter new location", new_location_path, class: "waves-effect waves-teal btn" %>
     <ul>
         <% @locations.each do |loc|  %>
-            <li>
-                <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %> - 
-                <%= loc.address %> - 
-                <%= loc.phone %> - 
-                <%= loc.description %> - 
-                <%= loc.id %> - 
-                <%= loc.user.name %>
+            <div class="divider"></div>
+            <br>
+            <li class="row">
+                <div class="col s2">
+                    <% unless loc.images[0].image_file_name.nil? %>
+                        <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
+                    <% else %>
+                        <%= image_tag "default-pic.jpg", alt: "Default location picture", style: "height: 80px; width: 80px", class: "center-block" %>
+                    <% end %>
+                </div>
+                <div class="col s5">
+                    <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %>
+                </div>
+                <div class="col s5">
+                    <%= loc.address %>
+                    <br>
+                    <%= loc.phone %>
+                    <br>
+                    <%= loc.description.capitalize %>
+                </div>
             </li>
         <% end %>
     </ul>
+    <br>
+
     <script>
         var locations = [
             <% @locations.each do |loc| %>
