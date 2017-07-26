@@ -1,70 +1,113 @@
-<div class="container">
-<h1><%= @location.name %></h1>
-    
-<%= @location.address %>
-<%= @location.phone %>
-<%= @location.description %>
-
-<br>
-<% if @location.user.id == session[:user_id] %>
-    <%= link_to "Edit location", edit_location_path(@location), class: "waves-effect waves-teal btn" %>
-<% end %>
-
-<%= link_to "Back", locations_path, class: "waves-effect waves-teal btn" %>
-<br>
-
-<ul>
-    <li>
-        <% unless @location.images[0].image_file_name.nil? %>
-            <% @location.images.each do |img| %>
-                <%= image_tag img.image.url(:thumb) %>
-            <% end %>
-        <% else %>
-            <%= image_tag "default-pic.jpg" %>
-        <% end %>
-    </li>
-</ul>
-
-
-<h2>Enter a review</h2>
-<%= form_for [@location, @review] do |f| %>
-    <div class="input-field">
-        <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
-        <%= f.label :rating %>
-    </div>
-    <div class="input-field">
-        <%= f.text_area :comment, class: "materialize-textarea" %>
-        <%= f.label :comment %>
-    </div>
-    <div class="input-field file-field">
-        <div class="btn">
-            <span>Upload a picture</span>
-            <%= f.file_field :image %>
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-      </div>
-    </div>
-    <%= f.submit "Enter review", class: "waves-effect waves-teal btn" %>
-<% end %>
-
-<ul>
-<% @location.reviews.each do |review| %>
-    <li>
-        Rating: <%= review.rating %> - Comment: <%= review.comment %> - <%= review.location_id%>
-        <ul>
-            <% review.images.each do |img| %>
-            <li>
-                <%= image_tag img.image.url(:thumb) %>
-            </li>    
-            <% end %>
+<nav class="nav-center teal lighten-2">
+    <div class="nav-wrapper container ">
+        <ul id="nav-mobile" class="hide-on-med-and-down">
+            <li><a href="/pages/parks">Dog Parks</a></li>
+            <li><a href="/pages/restaurants">Restaurants</a></li>
+            <li><a href="/pages/hotels">Hotels</a></li>
+            <li><a href="/pages/veterinarians">Veterinarians</a></li>
+            <li><a href="/pages/groomers">Groomers</a></li>
+            <li><a href="/pages/stores">Pet Stores</a></li>
         </ul>
-        <% if review.user_id == session[:user_id] %>
-            <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
+    </div>
+</nav>
+
+<div class="container">
+    <h1><%= @location.name %></h1>
+    <%= link_to "Back", locations_path, class: "waves-effect waves-teal btn right" %>
+    <% temp_num = 0 %>
+    <% average = average_location_review @location %>
+    <% while temp_num < average do %>
+        <i class="material-icons red-text text-accent-2">star</i>
+        <% temp_num += 1%>
+    <% end%>
+    <br>
+    <%= @location.address %>
+    <br>
+    <%= @location.phone %>
+    <br>
+    <br>
+    <% if @location.user.id == session[:user_id] %>
+        <%= link_to "Edit location", edit_location_path(@location), class: "waves-effect waves-teal btn" %>
+    <% end %>
+    <br>
+    <br>
+    <div class="row">
+        <% all_nil = true %>
+        <% @location.images.each do |img| %>
+            <% if img.image_file_name != nil %>
+                <% all_nil = false %>
+            <% end %>    
         <% end %>
-    </li>
-<% end %>
-</ul>
+        <% if all_nil %>
+                <%= image_tag "default-pic.jpg", style: "height: 100px; width: 100px" %>
+        <% else %>
+            <% @location.images.each do |img| %>
+                <% unless img.image_file_name.nil? %>
+                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 class="center">Enter a review</h3>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <%= form_for [@location, @review] do |f| %>
+                <div class="input-field">
+                    <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
+                    <%= f.label :rating %>
+                </div>
+                <div class="input-field">
+                    <%= f.text_area :comment, class: "materialize-textarea" %>
+                    <%= f.label :comment %>
+                </div>
+                <div class="input-field file-field">
+                    <div class="btn">
+                        <span>Upload a picture</span>
+                        <%= f.file_field :image %>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                </div>
+                </div>
+                <%= f.submit "Enter review", class: "waves-effect waves-teal btn" %>
+            <% end %>
+        </div>
+    </div>
+    
+
+    <ul>
+        <% @location.reviews.each do |review| %>
+            <div class="divider"></div>
+            <br>
+            <li>
+                <% temp_num = 0 %>
+                <% while temp_num < review.rating do %>
+                    <i class="material-icons red-text text-accent-2">star</i>
+                    <% temp_num += 1%>
+                <% end%>
+                <br>
+                <%= review.comment %>
+                <br>
+                <div class="col s1">
+                        <% review.images.each do |img| %>
+                            <% unless img.image_file_name.nil? %>
+                                <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                            <% end %>
+                        <% end %>
+                </div>
+                <br>
+                Submitted by <%= User.find(review.user_id).name %>
+                <br>
+                <% if review.user_id == session[:user_id] %>
+                    <%= link_to "Edit", edit_review_path(review), class: "red-text text-accent-2" %>
+                <% end %>
+                <br>
+            </li>
+        <% end %>
+    </ul>
 </div>
 
 <script>

@@ -21,6 +21,7 @@ class LocationsController < ApplicationController
             @location.images.create(params.require(:location).permit(:image))
             redirect_to locations_path
         else
+            flash.now.alert = "Please provide a name and address"
             render :new
         end
     end

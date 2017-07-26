@@ -1,15 +1,21 @@
 <div class="container">
-<h1>Log In</h1>
-<p id="alert"><%= alert %></p>
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
+  <div class="row">
+    <h1 class="center">Log In</h1>
+    <div class="col s6 offset-s3">
+      <p id="alert" class="red-text text-accent-2"><%= alert %></p>
+      <%= form_tag sessions_path do %>
+        <div class="input-field">
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email] %>
+        </div>
+        <div class="input-field">
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+        <div class="actions">
+          <%= submit_tag "Log In", class: "waves-effect waves-teal btn" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
 </div>

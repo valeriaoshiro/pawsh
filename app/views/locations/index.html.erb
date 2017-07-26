@@ -30,6 +30,13 @@
                 </div>
                 <div class="col s5">
                     <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %>
+                    <br>
+                    <% temp_num = 0 %>
+                    <% average = average_location_review loc %>
+                    <% while temp_num < average do %>
+                        <i class="material-icons red-text text-accent-2">star</i>
+                        <% temp_num += 1%>
+                    <% end%>
                 </div>
                 <div class="col s5">
                     <%= loc.address %>

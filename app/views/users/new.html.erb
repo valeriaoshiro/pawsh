@@ -1,32 +1,36 @@
 <div class="container">
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
+  <div class="row">
+    <h1 class="center">Sign Up</h1>
+    <div class="col s6 offset-s3">
+        <%= form_for @user do |f| %>
+          <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="input-field">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="input-field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="input-field">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+          </div>
+          <div class="input-field">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+          <div class="actions waves-effect waves-teal btn"><%= f.submit "Sign Up"%></div>
         <% end %>
-      </ul>
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
   </div>
-  <div class="input-field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="input-field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="input-field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
-<% end %>
 </div>

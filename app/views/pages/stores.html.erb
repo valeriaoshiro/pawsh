@@ -16,9 +16,8 @@
     <div class="map"></div>
     <br>
     <%= link_to "Add new park", new_location_path, class: "waves-effect waves-teal btn" %>
-    <% locations = Location.all %>
     <ul>
-        <% locations.each do |loc|  %>
+        <% @locations.each do |loc|  %>
             <% if loc.description == "store" %>
                 <div class="divider"></div>
                 <br>
@@ -32,6 +31,13 @@
                     </div>
                     <div class="col s5">
                         <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %> 
+                        <br>
+                        <% temp_num = 0 %>
+                        <% average = average_location_review loc %>
+                        <% while temp_num < average do %>
+                            <i class="material-icons red-text text-accent-2">star</i>
+                            <% temp_num += 1%>
+                        <% end%>
                     </div>
                     <div class="col s5">
                         <%= loc.address %> 
@@ -46,7 +52,7 @@
 
     <script>
         var locations = [
-            <% locations.each do |loc| %>
+            <% @locations.each do |loc| %>
                 <% if loc.description == "store" %>
                     <%= raw loc.address.to_json %>,
                 <% end %>
