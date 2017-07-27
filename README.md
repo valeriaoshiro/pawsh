@@ -1,24 +1,19 @@
-# README
+# PAWSH
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pawsh is a web app for dog owners. The users are able to enter locations that are dog-friendly. Some of the categories are dog parks, dog-friendly hotels, and restaurants. They are also able to post reviews of each location.
 
-Things you may want to cover:
+The idea to create Pawsh was born when I was planning a mini vacation in San Diego. I wanted to take my dog, so I started to look for dog-friendly hotels and restaurants.
 
-* Ruby version
+## Technologies Used:
+Ruby on Rails, Paperclip (to upload images), Bcrypt (to sign up and login), Materialize (to style)
 
-* System dependencies
+## Getting Started: 
+Click [here](https://pawsh.herokuapp.com/) to visit the app.
 
-* Configuration
+Click [here](https://trello.com/b/YYc8hVyy/pawsh) to visit my Trello board.
 
-* Database creation
+## Next Steps:
+* I want the marker to show information when clicked.
+* I want to user to enter locations by name and autocomplete the address
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
