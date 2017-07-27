@@ -44,7 +44,7 @@ Click [here](https://pawsh.herokuapp.com/) to visit the app.
 Click [here](https://trello.com/b/YYc8hVyy/pawsh) to visit my Trello board.
 
 ## Next Steps:
-* Check to see if locaiton already exist before submitting
+* Check to see if location already exist before submitting
 * On the map, when the marker is clicked, I want to show information
 * I want to user to enter locations by name and autocomplete the address
 * When users add a new location, I want to confirm if the address is a valid address

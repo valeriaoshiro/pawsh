@@ -22,10 +22,12 @@
             <br>
             <li class="row">
                 <div class="col s2">
-                    <% unless loc.images[0].image_file_name.nil? %>
-                        <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
-                    <% else %>
-                        <%= image_tag "default-pic.jpg", alt: "Default location picture", style: "height: 80px; width: 80px", class: "center-block" %>
+                    <% if loc.images[0] %>
+                        <% unless loc.images[0].image_file_name.nil? %>
+                            <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
+                        <% else %>
+                            <%= image_tag "default-pic.jpg", alt: "Default location picture", style: "height: 80px; width: 80px", class: "center-block" %>
+                        <% end %>
                     <% end %>
                 </div>
                 <div class="col s5">
