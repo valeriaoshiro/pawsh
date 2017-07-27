@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <%= link_to "Back", @image_parent_path, class: "waves-effect waves-teal btn right" %>
+            <br>
+            <br>
+            <%= image_tag @image.image.url, style: "width: 500px" %>
+            <br>
+            <br>
+            <% if @image_parent.user.id == session[:user_id] %>
+                <%= link_to "Edit picture", edit_image_path(@image), class: "waves-effect waves-teal btn" %>
+            <% end %>
+        </div>
+    </div>
+</div>

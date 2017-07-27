@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row">
+        <h1 class="center">Edit picture</h1>
+        <div class="col s6 offset-s3">
+            <%= link_to "Back", image_path(@image), class: "waves-effect waves-teal btn right" %>
+            <br>
+            <%= form_for @image do |f| %>
+                <div class="input-field file-field">
+                    <div class="btn">
+                        <span>Upload a picture</span>
+                        <%= f.file_field :image %>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <br>
+                <%= f.submit "Edit picture", class: "waves-effect waves-teal btn" %>
+            <% end %>
+            <br>
+            <%= link_to "Delete picture", image_path(@image), method: :delete, data: { confirm: "Are you sure? " }, class: "waves-effect waves-teal btn" %>
+        </div>    
+    </div>
+    <br>
+</div>

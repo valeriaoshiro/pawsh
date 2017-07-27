@@ -21,14 +21,15 @@ The idea to create Pawsh was born when I was planning a mini vacation in San Die
 * Locations
     * Locations are divided by categories (dog parks, restaurants, hotels, vets, groomers, and pet stores)
     * Visitors/users are able to see locations by categories or all
-    * Locations are shown in a map.
+    * Locations are shown in a map
     * Users need to login to post a new location
-    * Need to provide at least a name and address to create a new location. The can add pictures.
+    * Need to provide at least a name and address to create a new location. They can add pictures.
     * Users are able to edit or delete their own location only
+    * Users are able to edit/delete the pictures they entered
     * Locations show the average rating from the reviews
 * Reviews
     * Each location shows reviews on the bottom of their page
-    * The reviews show the rating and comments. 
+    * The reviews show the rating and comments
     * Review shows who submitted the review, and if they don't have any picture, they get a default profile picture
     * Users can add reviews to any location. They can add pictures
     * Users are only able to edit their own review
@@ -46,6 +47,6 @@ Click [here](https://trello.com/b/YYc8hVyy/pawsh) to visit my Trello board.
 * Check to see if locaiton already exist before submitting
 * On the map, when the marker is clicked, I want to show information
 * I want to user to enter locations by name and autocomplete the address
-* When users add a new locaition, I want to confirm if the address is a valid addres
-
+* When users add a new location, I want to confirm if the address is a valid address
+* I would like for users to edit/delete pictures for the reviews and profile
 

@@ -1,34 +1,35 @@
 <div class="container">
-<h1>Review for: <%= @review.location.name %></h1>
-
-<div class="row">
-    <%= form_for @review do |f| %>
-        <div class="input-field">
-            <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
-            <%= f.label :rating %>
+    <div class="row">
+        <h1 class="center">Review for: <%= @review.location.name %></h1>
+        <div class="col s6 offset-s3">
+            <%= link_to "Back", location_path(@review.location.id), class: "waves-effect waves-teal btn right" %>
+            <br>
+            <%= form_for @review do |f| %>
+                <div class="input-field">
+                    <%= f.select :rating, options_for_select([["5 - Good", 5], ["4", 4], ["3", 3], ["2", 2], ["1 - Bad", 1]], params[:rating]) %>
+                    <%= f.label :rating %>
+                </div>
+                <div class="input-field">
+                    <%= f.text_area :comment, class: "materialize-textarea active" %>
+                    <%= f.label :comment %>
+                </div>
+                <div class="input-field file-field">
+                    <div class="btn">
+                        <span>Upload a picture</span>
+                        <%= f.file_field :image %>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <br>
+                <%= f.submit "Edit review for #{@review.location.name}", class: "waves-effect waves-teal btn" %>
+            <% end %>
+            <br>
+            <%= link_to "Delete", review_path(@review), method: :delete, data: { confirm: "Are you sure? " }, class: "waves-effect waves-teal btn" %>
         </div>
-        <div class="input-field">
-            <%= f.text_area :comment, class: "materialize-textarea active" %>
-            <%= f.label :comment %>
-        </div>
-        <div class="input-field file-field">
-        <div class="btn">
-            <span>Upload a picture</span>
-            <%= f.file_field :image %>
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-      </div>
-    </div>
-        <%= f.submit "Edit review for #{@review.location.name}", class: "waves-effect waves-teal btn" %>
-
-    <% end %>
-
+    </div>    
     <br>
-    <%= link_to "Delete", review_path(@review), method: :delete, data: { confirm: "Are you sure? " }, class: "waves-effect waves-teal btn" %>
-    <br><br>
-    <%= link_to "Back", location_path(@review.location.id), class: "waves-effect waves-teal btn" %>
-</div>
 </div>  
 
 <script>

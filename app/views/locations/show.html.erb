@@ -43,7 +43,9 @@
         <% else %>
             <% @location.images.each do |img| %>
                 <% unless img.image_file_name.nil? %>
+                    <%= link_to image_path(img.id) do %>
                     <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                    <% end %>
                 <% end %>
             <% end %>
         <% end %>
@@ -104,7 +106,7 @@
                             <br>
                             <% review.images.each do |img| %>
                                 <% unless img.image_file_name.nil? %>
-                                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                                        <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
                                 <% end %>
                             <% end %>
                         </div>

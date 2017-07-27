@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :reviews, shallow: true 
   end
 
+  resources :images
+
   resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
   get '/signup', to: 'users#new'
