@@ -104,7 +104,7 @@
                         <br>
                         <div class="col s12">
                             <br>
-                            <% if loc.images[0] %>
+                            <% if review.images.first %>
                                 <% review.images.each do |img| %>
                                     <% unless img.image_file_name.nil? %>
                                             <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
