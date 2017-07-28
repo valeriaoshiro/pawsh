@@ -22,7 +22,7 @@
             <br>
             <li class="row">
                 <div class="col s2">
-                    <% if loc.images[0] %>
+                    <% if loc.images.first %>
                         <% unless loc.images[0].image_file_name.nil? %>
                             <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
                         <% else %>
