@@ -23,11 +23,19 @@
                 <br>
                 <li class="row">
                     <div class="col s2">
-                        <% if loc.images.first %>
-                            <% unless loc.images[0].image_file_name.nil? %>
-                                    <%= image_tag loc.images[0].image.url(:thumb), style: "height: 80px; width: 80px", class: "center-block" %>
-                            <% else %>
-                                <%= image_tag "default-pic.jpg", alt: "Default location picture", style: "height: 80px; width: 80px", class: "center-block" %>
+                        <% all_nil = true %>
+                        <% loc.images.each do |img| %>
+                            <% if img.image_file_name != nil %>
+                                <% all_nil = false %>
+                            <% end %>    
+                        <% end %>
+                        <% if all_nil %>
+                                <%= image_tag "default-pic.jpg", style: "height: 100px; width: 100px" %>
+                        <% else %>
+                            <% loc.images.each do |img| %>
+                                <% unless img.image_file_name.nil? %>
+                                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
+                                <% end %>
                             <% end %>
                         <% end %>
                     </div>
