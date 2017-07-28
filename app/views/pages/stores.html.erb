@@ -15,7 +15,7 @@
     <h1 class="center">Pet Store</h1>
     <div class="map"></div>
     <br>
-    <%= link_to "Add new park", new_location_path, class: "waves-effect waves-teal btn" %>
+    <%= link_to "Add new pet store", new_location_path, class: "waves-effect waves-teal btn" %>
     <ul>
         <% @locations.each do |loc|  %>
             <% if loc.description == "store" %>
