@@ -9,6 +9,7 @@ The idea to create Pawsh was born when I was planning a mini vacation in San Die
 ![All locations page](http://i.imgur.com/2rycvYW.png)
 
 ![Show a location with ratings](http://i.imgur.com/HRztjA1.png)
+
 ### Features
 * User sign up
     * User need to provide name, email, and password
@@ -41,7 +42,14 @@ The idea to create Pawsh was born when I was planning a mini vacation in San Die
 
 
 ## Technologies Used:
-Ruby on Rails, Paperclip (to upload images), Bcrypt (to sign up and login), Materialize (to style)
+* HTML
+* CSS
+* JavaScript
+* jQuery
+* Ruby on Rails
+* Paperclip (to upload images) 
+* Bcrypt (to sign up and login)
+* Materialize (to style)
 
 ## Getting Started: 
 Click [here](https://pawsh.herokuapp.com/) to visit the app.
