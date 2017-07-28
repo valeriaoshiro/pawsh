@@ -4,6 +4,12 @@ Pawsh is a web app for dog owners. The users are able to enter locations that ar
 
 The idea to create Pawsh was born when I was planning a mini vacation in San Diego. I wanted to take my dog, so I started to look for dog-friendly hotels and restaurants.
 
+![Home page](http://imgur.com/wr6ljsK)
+
+![All locations page](http://imgur.com/2rycvYW)
+
+![Show a location with ratings](http://imgur.com/HRztjA1)
+
 ### Features
 * User sign up
     * User need to provide name, email, and password
