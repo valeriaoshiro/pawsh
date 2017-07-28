@@ -15,7 +15,7 @@
                 </div>
                 <div class="input-field">
                     <%= f.text_field :phone %>
-                    <%= f.label :phone %>
+                    <%= f.label :phone, class: "active" %>
                 </div>
                 <div class="input-field">
                     <%= f.select :description, options_for_select([["Dog Park", "park"], ["Restaurant", "restaurant"], ["Hotel", "hotel"], ["Veterinarian", "vet"], ["Groomer", "groomer"], ["Pet Store", "store"]], params[:description]) %>

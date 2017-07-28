@@ -5,12 +5,12 @@
       <p id="alert" class="red-text text-accent-2"><%= alert %></p>
       <%= form_tag sessions_path do %>
         <div class="input-field">
-          <%= label_tag :email %>
           <%= text_field_tag :email, params[:email] %>
+          <%= label_tag :email, nil, class: "active" %>
         </div>
         <div class="input-field">
-          <%= label_tag :password %>
           <%= password_field_tag :password %>
+          <%= label_tag :password, nil, class: "active" %>
         </div>
         <div class="actions">
           <%= submit_tag "Log In", class: "waves-effect waves-teal btn" %>
