@@ -23,20 +23,16 @@
             <li class="row">
                 <div class="col s2">
                     <% all_nil = true %>
-                        <% loc.images.each do |img| %>
-                            <% if img.image_file_name != nil %>
-                                <% all_nil = false %>
-                            <% end %>    
-                        <% end %>
-                        <% if all_nil %>
-                                <%= image_tag "default-pic.jpg", style: "height: 100px; width: 100px" %>
-                        <% else %>
-                            <% loc.images.each do |img| %>
-                                <% unless img.image_file_name.nil? %>
-                                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
-                                <% end %>
-                            <% end %>
-                        <% end %>
+                    <% loc.images.each do |img| %>
+                        <% if img.image_file_name != nil %>
+                            <% all_nil = false %>
+                        <% end %>    
+                    <% end %>
+                    <% if all_nil %>
+                            <%= image_tag "default-pic.jpg", style: "height: 100px; width: 100px" %>
+                    <% else %>
+                            <%= image_tag loc.images[0].image.url(:thumb), style: "height: 100px; width: 100px" %>
+                    <% end %>
                 </div>
                 <div class="col s5">
                     <%= link_to loc.name, location_path(loc), class: "red-text text-accent-2" %>

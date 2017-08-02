@@ -32,11 +32,7 @@
                         <% if all_nil %>
                                 <%= image_tag "default-pic.jpg", style: "height: 100px; width: 100px" %>
                         <% else %>
-                            <% loc.images.each do |img| %>
-                                <% unless img.image_file_name.nil? %>
-                                    <%= image_tag img.image.url(:thumb), style: "height: 100px; width: 100px" %>
-                                <% end %>
-                            <% end %>
+                                <%= image_tag loc.images[0].image.url(:thumb), style: "height: 100px; width: 100px" %>
                         <% end %>
                     </div>
                     <div class="col s5">
